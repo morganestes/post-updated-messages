@@ -29,7 +29,7 @@ define( 'PUM_VERSION', '0.1.0' );
 
 add_action( 'admin_init', 'pum_setup' );
 
-function pum_setup(){
+function pum_setup() {
 
 	add_filter( 'post_updated_messages', 'pum_single_messages', 10, 1 );
 	add_filter( 'bulk_post_updated_messages', 'pum_bulk_messages', 10, 2 );
@@ -185,13 +185,22 @@ function pum_single_messages( $messages ) {
 function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	global $post_type, $post_type_object, $post;
 
+	$labels = get_post_type_labels( $post_type_object );
+
+	// Core handles number i18n and sprintf(), so don't do it here inside _n()
+	/* translators: 1: the literal string '%s', 2: post type singular name label */
 	$bulk_messages[ $post_type ] = array(
-		'updated'   => _n( '%s thing updated.', '%s things updated.', $bulk_counts['updated'] ),
 		'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 thing not updated, somebody is editing it.' ) :
 			_n( '%s thing not updated, somebody is editing it.', '%s things not updated, somebody is editing them.', $bulk_counts['locked'] ),
 		'deleted'   => _n( '%s thing permanently deleted.', '%s things permanently deleted.', $bulk_counts['deleted'] ),
 		'trashed'   => _n( '%s thing moved to the Trash.', '%s things moved to the Trash.', $bulk_counts['trashed'] ),
 		'untrashed' => _n( '%s thing restored from the Trash.', '%s things restored from the Trash.', $bulk_counts['untrashed'] ),
+		'updated'   => _n(
+			sprintf( esc_html__( '%1$s %2$s updated.', 'post-updated-messages' ), '%s', $labels->singular_name ),
+			sprintf( '%1$s %2$s updated.', '%s', $labels->name ),
+			$bulk_counts['updated'],
+			'post-updated-messages'
+		),
 	);
 
 	return $bulk_messages;
