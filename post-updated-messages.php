@@ -43,16 +43,13 @@ function pum_load_plugin_translation() {
 }
 
 /**
- * Customize the update messages for the post type.
+ * Get the post types to use in the plugin.
  *
  * @since 0.1.0
  *
- * @param array $messages A post-type-indexed array of message strings.
- * @return array The updated array of messages.
+ * @return array The filtered array of post types.
  */
-function pum_single_messages( $messages ) {
-	global $post_type, $post_type_object, $post;
-
+function get_pum_post_types() {
 	/**
 	 * Filter the post types to exclude from custom messages.
 	 *
@@ -65,11 +62,25 @@ function pum_single_messages( $messages ) {
 	 */
 	$post_types_nofilter = apply_filters( 'pum_post_types_nofilter', array( 'post', 'page' ) );
 
-	if ( ! is_array( $post_types_nofilter ) ) {
+	if ( ! is_array( $post_types_nofilter ) && is_string( $post_types_nofilter ) ) {
 		$post_types_nofilter = array( $post_types_nofilter );
 	}
 
-	if ( in_array( $post_type, $post_types_nofilter, true ) ) {
+	return $post_types_nofilter;
+}
+
+/**
+ * Customize the update messages for the post type.
+ *
+ * @since 0.1.0
+ *
+ * @param array $messages A post-type-indexed array of message strings.
+ * @return array The updated array of messages.
+ */
+function pum_single_messages( $messages ) {
+	global $post_type, $post_type_object, $post;
+
+	if ( in_array( $post_type, get_pum_post_types(), true ) ) {
 		return $messages;
 	}
 
