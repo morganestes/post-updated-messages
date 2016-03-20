@@ -73,6 +73,7 @@ function get_pum_post_types() {
  * Customize the update messages for the post type.
  *
  * @since 0.1.0
+ * @callback 'post_updated_messages' filter.
  *
  * @param array $messages A post-type-indexed array of message strings.
  * @return array The updated array of messages.
@@ -177,18 +178,20 @@ function pum_single_messages( $messages ) {
  * Add custom messages to the bulk actions for custom post types.
  *
  * @since 0.1.0
+ * @callback 'bulk_post_updated_messages' filter.
  *
  * @param array $bulk_messages Message strings to filter.
  * @param array $bulk_counts   The counts for each of the message types.
- * @return array The updated bulk messages with customizations.
+ * @return array The custom messages for the appropriate count.
  */
 function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	global $post_type, $post_type_object, $post;
 
 	$labels = get_post_type_labels( $post_type_object );
 
-	// Core handles number i18n and sprintf(), so don't do it here inside _n()
-	/* translators: 1: the literal string '%s', 2: post type singular name label */
+	/*
+	 * Core runs the filtered strings through sprintf(), which means our string needs the '%s' placeholder for the count.
+	 */
 	$bulk_messages[ $post_type ] = array(
 		'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 thing not updated, somebody is editing it.' ) :
 			_n( '%s thing not updated, somebody is editing it.', '%s things not updated, somebody is editing them.', $bulk_counts['locked'] ),
