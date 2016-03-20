@@ -81,6 +81,8 @@ function get_pum_post_types() {
 function pum_single_messages( $messages ) {
 	global $post_type, $post_type_object, $post;
 
+	do_action( 'pum_before_single_messages', $post_type );
+
 	if ( in_array( $post_type, get_pum_post_types(), true ) ) {
 		return $messages;
 	}
@@ -176,6 +178,8 @@ function pum_single_messages( $messages ) {
 		10 => sprintf( $actions['draft_updated'], $labels->singular_name, $preview_post_link_html ),
 	);
 
+	do_action( 'pum_after_single_messages', $post_type );
+
 	return $messages;
 }
 
@@ -194,6 +198,7 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 
 	$labels = get_post_type_labels( $post_type_object );
 
+	do_action( 'pum_before_bulk_messages', $post_type );
 
 	// Core runs the filtered strings through sprintf(), so ensure the '%s' placeholder remains for the count.
 	$bulk_messages[ $post_type ] = array(
@@ -232,6 +237,8 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 				number_format_i18n( $bulk_counts['locked'] ), 'post-updated-messages' ),
 				'%s', $labels->singular_name, $labels->name ),
 	);
+
+	do_action( 'pum_after_bulk_messages', $post_type );
 
 	return $bulk_messages;
 }
