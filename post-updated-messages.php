@@ -130,7 +130,9 @@ function pum_single_messages( $messages ) {
 	 */
 	$actions = apply_filters( 'pum_post_actions', $actions );
 
-	if ( ! is_array( $actions ) ) {
+	if ( is_array( $actions ) ) {
+		$actions = array_map( 'esc_html', $actions );
+	} else {
 		return $messages;
 	}
 
