@@ -121,8 +121,8 @@ function pum_single_messages( $messages ) {
 	 * Filter the updated messages.
 	 *
 	 * The labels can be modified with the {@see "post_type_labels_{$post_type}"} filter
-	 * prior to combining them with the actions strings. This provides one last chance to
-	 * change the message before they're used.
+	 * prior to combining them with the actions strings. This filter allows specific messages
+	 * to be reset to the default 'post' value by unsetting the key for that message.
 	 *
 	 * @since 0.1.0
 	 *
