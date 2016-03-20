@@ -193,16 +193,33 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	 * Core runs the filtered strings through sprintf(), which means our string needs the '%s' placeholder for the count.
 	 */
 	$bulk_messages[ $post_type ] = array(
-		'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 thing not updated, somebody is editing it.' ) :
-			_n( '%s thing not updated, somebody is editing it.', '%s things not updated, somebody is editing them.', $bulk_counts['locked'] ),
-		'deleted'   => _n( '%s thing permanently deleted.', '%s things permanently deleted.', $bulk_counts['deleted'] ),
-		'trashed'   => _n( '%s thing moved to the Trash.', '%s things moved to the Trash.', $bulk_counts['trashed'] ),
-		'untrashed' => _n( '%s thing restored from the Trash.', '%s things restored from the Trash.', $bulk_counts['untrashed'] ),
+		/* translators: 1: the literal string '%s', 2: post type name */
 		'updated'   => _n(
 			sprintf( esc_html__( '%1$s %2$s updated.', 'post-updated-messages' ), '%s', $labels->singular_name ),
-			sprintf( '%1$s %2$s updated.', '%s', $labels->name ),
-			$bulk_counts['updated'],
-			'post-updated-messages'
+			sprintf( esc_html__( '%1$s %2$s updated.', 'post-updated-messages' ), '%s', $labels->name ),
+			$bulk_counts['updated']
+		),
+		'locked'    => ( 1 === $bulk_counts['locked'] ) ?
+			sprintf( esc_html__( '1 %s not updated, somebody is editing it.', 'post-updated-messages' ), $labels->singular_name ) :
+			_n(
+				sprintf( esc_html__( '%1$s %2$s not updated, somebody is editing it.', 'post-updated-messages' ), '%s', $labels->singular_name ),
+				sprintf( esc_html__( '%1$s %2$s not updated, somebody is editing them.', 'post-updated-messages' ), '%s', $labels->name ),
+				$bulk_counts['locked']
+			),
+		'deleted'   => _n(
+			sprintf( esc_html__( '%1$s %2$s permanently deleted.', 'post-updated-messages' ), '%s', $labels->singular_name ),
+			sprintf( esc_html__( '%1$s %2$s permanently deleted.', 'post-updated-messages' ), '%s', $labels->name ),
+			$bulk_counts['deleted']
+		),
+		'trashed'   => _n(
+			sprintf( esc_html__( '%1$s %2$s moved to the Trash.', 'post-updated-messages' ), '%s', $labels->singular_name ),
+			sprintf( esc_html__( '%1$s %2$s moved to the Trash.', 'post-updated-messages' ), '%s', $labels->name ),
+			$bulk_counts['trashed']
+		),
+		'untrashed' => _n(
+			sprintf( esc_html__( '%1$s %2$s restored from the Trash.', 'post-updated-messages' ), '%s', $labels->singular_name ),
+			sprintf( esc_html__( '%1$s %2$s restored from the Trash.', 'post-updated-messages' ), '%s', $labels->name ),
+			$bulk_counts['untrashed']
 		),
 	);
 
