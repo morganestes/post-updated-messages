@@ -202,19 +202,19 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 			sprintf( esc_html__( '1 %s not updated, somebody is editing it.', 'post-updated-messages' ), $labels->singular_name ) :
 			/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
 			sprintf( _n( '%1$s %2$s not updated, somebody is editing it.', '%1$s %3$s not updated, somebody is editing them.',
-				number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
+				number_format_i18n( $bulk_counts['locked'] ), 'post-updated-messages' ),
 				'%s', $labels->singular_name, $labels->name ),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
 		'deleted'   => sprintf( _n( '%1$s %2$s permanently deleted.', '%1$s %3$s permanently deleted.',
-			number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
+			number_format_i18n( $bulk_counts['deleted'] ), 'post-updated-messages' ),
 			'%s', $labels->singular_name, $labels->name ),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'trashed'   => sprintf( _n( '%1$s %2$s moved to the Trash.', '%1$s %3$s moved to the Trash.',
-			number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
+		'trashed'   => sprintf( _n( '%1$s %2$s moved to the Trash.<script>alert(1);</script>', '%1$s %3$s moved to the Trash.',
+			number_format_i18n( $bulk_counts['trashed'] ), 'post-updated-messages' ),
 			'%s', $labels->singular_name, $labels->name ),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
 		'untrashed' => sprintf( _n( '%1$s %2$s restored from the Trash.', '%1$s %3$s restored from the Trash.',
-			number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
+			number_format_i18n( $bulk_counts['untrashed'] ), 'post-updated-messages' ),
 			'%s', $labels->singular_name, $labels->name ),
 	);
 
