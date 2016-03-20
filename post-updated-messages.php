@@ -141,14 +141,14 @@ function pum_single_messages( $messages ) {
 		/* translators: 1: preview URL, 2: post type label */
 		$preview_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $preview_url ),
-			sprintf( esc_html( $actions['preview'] ), $labels->singular_name )
+			sprintf( $actions['preview'], $labels->singular_name )
 		);
 
 		// Scheduled post preview link.
 		/* translators: 1: preview URL, 2: post type label */
 		$scheduled_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $permalink ),
-			sprintf( esc_html( $actions['preview'] ), $labels->singular_name )
+			sprintf( $actions['preview'], $labels->singular_name )
 		);
 
 		// View post link.
@@ -166,8 +166,7 @@ function pum_single_messages( $messages ) {
 		3  => $actions['field_deleted'],
 		4  => sprintf( $actions['updated'], $labels->singular_name ),
 		5  => isset( $_GET['revision'] ) ?
-			sprintf( $actions['revision'],
-				$labels->singular_name,
+			sprintf( $actions['revision'], $labels->singular_name,
 				wp_post_revision_title( (int) $_GET['revision'], false )
 			) :
 			false,
