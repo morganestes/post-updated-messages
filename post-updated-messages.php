@@ -72,7 +72,7 @@ function get_pum_post_types() {
 /**
  * Customize the update messages for the post type.
  *
- * @since 0.1.0
+ * @since    0.1.0
  * @callback 'post_updated_messages' filter.
  *
  * @param array $messages A post-type-indexed array of message strings.
@@ -96,20 +96,25 @@ function pum_single_messages( $messages ) {
 	$viewable               = is_post_type_viewable( $post_type_object );
 	$labels                 = get_post_type_labels( $post_type_object );
 
-	/* translators: unless otherwise noted, %s: post type label */
 	$actions = array(
-		'updated'       => __( '%s updated.', 'post-updated-messages' ),
-		'draft_updated' => __( '%s draft updated.', 'post-updated-messages' ),
-		'field_updated' => __( 'Custom field updated.', 'post-updated-messages' ),
-		'field_deleted' => __( 'Custom field deleted.', 'post-updated-messages' ),
-		'saved'         => __( '%s saved.', 'post-updated-messages' ),
-		'submitted'     => __( '%s submitted.', 'post-updated-messages' ),
-		'published'     => __( '%s published.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
+		'updated'       => esc_html__( '%s updated.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
+		'draft_updated' => esc_html__( '%s draft updated.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
+		'saved'         => esc_html__( '%s saved.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
+		'submitted'     => esc_html__( '%s submitted.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
+		'published'     => esc_html__( '%s published.', 'post-updated-messages' ),
 		/* translators: 1: post type label, 2: scheduled publish date and time */
-		'scheduled'     => __( '%1$s scheduled for: %2$s.', 'post-updated-messages' ),
+		'scheduled'     => esc_html__( '%1$s scheduled for: %2$s.', 'post-updated-messages' ),
 		/* translators: 1: post type label, 2: date and time of the revision */
-		'revision'      => __( '%1$s restored to revision from %2$s.' ),
-		'preview'       => __( 'Preview %s.', 'post-updated-messages' ),
+		'revision'      => esc_html__( '%1$s restored to revision from %2$s.' ),
+		/* translators: %s: post type singular label */
+		'preview'       => esc_html__( 'Preview %s.', 'post-updated-messages' ),
+		'field_updated' => esc_html__( 'Custom field updated.', 'post-updated-messages' ),
+		'field_deleted' => esc_html__( 'Custom field deleted.', 'post-updated-messages' ),
 	);
 
 	/**
@@ -154,21 +159,21 @@ function pum_single_messages( $messages ) {
 
 	$messages[ $post_type ] = array(
 		0  => '', // Unused. Messages start at index 1.
-		1  => sprintf( esc_html( $actions['updated'] ), $labels->singular_name ) . $view_post_link_html,
-		2  => esc_html( $actions['field_updated'] ),
-		3  => esc_html( $actions['field_deleted'] ),
-		4  => sprintf( esc_html( $actions['updated'] ), $labels->singular_name ),
+		1  => sprintf( $actions['updated'], $labels->singular_name ) . $view_post_link_html,
+		2  => $actions['field_updated'],
+		3  => $actions['field_deleted'],
+		4  => sprintf( $actions['updated'], $labels->singular_name ),
 		5  => isset( $_GET['revision'] ) ?
-			sprintf( esc_html( $actions['revision'] ),
+			sprintf( $actions['revision'],
 				$labels->singular_name,
 				wp_post_revision_title( (int) $_GET['revision'], false )
 			) :
 			false,
-		6  => sprintf( esc_html( $actions['published'] ), $labels->singular_name ) . $view_post_link_html,
-		7  => sprintf( esc_html( $actions['saved'] ), $labels->singular_name ),
-		8  => sprintf( esc_html( $actions['submitted'] ), $labels->singular_name ) . $preview_post_link_html,
-		9  => sprintf( esc_html( $actions['scheduled'] ), $labels->singular_name, '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_post_link_html,
-		10 => sprintf( esc_html( $actions['draft_updated'] ), $labels->singular_name ) . $preview_post_link_html,
+		6  => sprintf( $actions['published'], $labels->singular_name ) . $view_post_link_html,
+		7  => sprintf( $actions['saved'], $labels->singular_name ),
+		8  => sprintf( $actions['submitted'], $labels->singular_name ) . $preview_post_link_html,
+		9  => sprintf( $actions['scheduled'], $labels->singular_name, '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_post_link_html,
+		10 => sprintf( $actions['draft_updated'], $labels->singular_name ) . $preview_post_link_html,
 	);
 
 	return $messages;
@@ -177,7 +182,7 @@ function pum_single_messages( $messages ) {
 /**
  * Add custom messages to the bulk actions for custom post types.
  *
- * @since 0.1.0
+ * @since    0.1.0
  * @callback 'bulk_post_updated_messages' filter.
  *
  * @param array $bulk_messages Message strings to filter.
@@ -185,25 +190,47 @@ function pum_single_messages( $messages ) {
  * @return array The custom messages for the appropriate count.
  */
 function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
-	global $post_type, $post_type_object, $post;
+	global $post_type, $post_type_object;
 
 	$labels = get_post_type_labels( $post_type_object );
 
-	/*
-	 * Core runs the filtered strings through sprintf(), which means our string needs the '%s' placeholder for the count.
-	 */
+
+	// Core runs the filtered strings through sprintf(), so ensure the '%s' placeholder remains for the count.
 	$bulk_messages[ $post_type ] = array(
-		'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 thing not updated, somebody is editing it.' ) :
-			_n( '%s thing not updated, somebody is editing it.', '%s things not updated, somebody is editing them.', $bulk_counts['locked'] ),
-		'deleted'   => _n( '%s thing permanently deleted.', '%s things permanently deleted.', $bulk_counts['deleted'] ),
-		'trashed'   => _n( '%s thing moved to the Trash.', '%s things moved to the Trash.', $bulk_counts['trashed'] ),
-		'untrashed' => _n( '%s thing restored from the Trash.', '%s things restored from the Trash.', $bulk_counts['untrashed'] ),
-		'updated'   => _n(
-			sprintf( esc_html__( '%1$s %2$s updated.', 'post-updated-messages' ), '%s', $labels->singular_name ),
-			sprintf( '%1$s %2$s updated.', '%s', $labels->name ),
-			$bulk_counts['updated'],
-			'post-updated-messages'
-		),
+		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
+		'updated'   => sprintf( _n(
+			esc_html( '%1$s %2$s updated.' ),
+			esc_html( '%1$s %3$s updated.' ),
+			number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
+			'%s', $labels->singular_name, $labels->name ),
+		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
+		'deleted'   => sprintf( _n(
+			esc_html( '%1$s %2$s permanently deleted.' ),
+			esc_html( '%1$s %3$s permanently deleted.' ),
+			number_format_i18n( $bulk_counts['deleted'] ), 'post-updated-messages' ),
+			'%s', $labels->singular_name, $labels->name ),
+		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
+		'trashed'   => sprintf( _n(
+			esc_html( '%1$s %2$s moved to the Trash.' ),
+			esc_html( '%1$s %3$s moved to the Trash.' ),
+			number_format_i18n( $bulk_counts['trashed'] ), 'post-updated-messages' ),
+			'%s', $labels->singular_name, $labels->name ),
+		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
+		'untrashed' => sprintf( _n(
+			esc_html( '%1$s %2$s restored from the Trash.' ),
+			esc_html( '%1$s %3$s restored from the Trash.' ),
+			number_format_i18n( $bulk_counts['untrashed'] ), 'post-updated-messages' ),
+			'%s', $labels->singular_name, $labels->name ),
+		'locked'    => ( 1 === $bulk_counts['locked'] ) ?
+			/* translators: %s is the post type single name */
+			sprintf( esc_html__( '1 %s not updated, somebody is editing it.', 'post-updated-messages' ),
+				$labels->singular_name ) :
+			/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
+			sprintf( _n(
+				esc_html( '%1$s %2$s not updated, somebody is editing it.' ),
+				esc_html( '%1$s %3$s not updated, somebody is editing them.' ),
+				number_format_i18n( $bulk_counts['locked'] ), 'post-updated-messages' ),
+				'%s', $labels->singular_name, $labels->name ),
 	);
 
 	return $bulk_messages;
