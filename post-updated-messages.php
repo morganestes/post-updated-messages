@@ -96,20 +96,25 @@ function pum_single_messages( $messages ) {
 	$viewable               = is_post_type_viewable( $post_type_object );
 	$labels                 = get_post_type_labels( $post_type_object );
 
-	/* translators: unless otherwise noted, %s: post type label */
 	$actions = array(
+		/* translators: %s: post type singular label */
 		'updated'       => __( '%s updated.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
 		'draft_updated' => __( '%s draft updated.', 'post-updated-messages' ),
-		'field_updated' => __( 'Custom field updated.', 'post-updated-messages' ),
-		'field_deleted' => __( 'Custom field deleted.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
 		'saved'         => __( '%s saved.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
 		'submitted'     => __( '%s submitted.', 'post-updated-messages' ),
+		/* translators: %s: post type singular label */
 		'published'     => __( '%s published.', 'post-updated-messages' ),
 		/* translators: 1: post type label, 2: scheduled publish date and time */
 		'scheduled'     => __( '%1$s scheduled for: %2$s.', 'post-updated-messages' ),
 		/* translators: 1: post type label, 2: date and time of the revision */
 		'revision'      => __( '%1$s restored to revision from %2$s.' ),
+		/* translators: %s: post type singular label */
 		'preview'       => __( 'Preview %s.', 'post-updated-messages' ),
+		'field_updated' => __( 'Custom field updated.', 'post-updated-messages' ),
+		'field_deleted' => __( 'Custom field deleted.', 'post-updated-messages' ),
 	);
 
 	/**
@@ -189,9 +194,8 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 
 	$labels = get_post_type_labels( $post_type_object );
 
-	/*
-	 * Core runs the filtered strings through sprintf(), which means our string needs the '%s' placeholder for the count.
-	 */
+
+	// Core runs the filtered strings through sprintf(), so ensure the '%s' placeholder remains for the count.
 	$bulk_messages[ $post_type ] = array(
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
 		'updated'   => sprintf( _n(
