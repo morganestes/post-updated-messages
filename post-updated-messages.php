@@ -98,23 +98,23 @@ function pum_single_messages( $messages ) {
 
 	$actions = array(
 		/* translators: %s: post type singular label */
-		'updated'       => __( '%s updated.', 'post-updated-messages' ),
+		'updated'       => esc_html__( '%s updated.', 'post-updated-messages' ),
 		/* translators: %s: post type singular label */
-		'draft_updated' => __( '%s draft updated.', 'post-updated-messages' ),
+		'draft_updated' => esc_html__( '%s draft updated.', 'post-updated-messages' ),
 		/* translators: %s: post type singular label */
-		'saved'         => __( '%s saved.', 'post-updated-messages' ),
+		'saved'         => esc_html__( '%s saved.', 'post-updated-messages' ),
 		/* translators: %s: post type singular label */
-		'submitted'     => __( '%s submitted.', 'post-updated-messages' ),
+		'submitted'     => esc_html__( '%s submitted.', 'post-updated-messages' ),
 		/* translators: %s: post type singular label */
-		'published'     => __( '%s published.', 'post-updated-messages' ),
+		'published'     => esc_html__( '%s published.', 'post-updated-messages' ),
 		/* translators: 1: post type label, 2: scheduled publish date and time */
-		'scheduled'     => __( '%1$s scheduled for: %2$s.', 'post-updated-messages' ),
+		'scheduled'     => esc_html__( '%1$s scheduled for: %2$s.', 'post-updated-messages' ),
 		/* translators: 1: post type label, 2: date and time of the revision */
-		'revision'      => __( '%1$s restored to revision from %2$s.' ),
+		'revision'      => esc_html__( '%1$s restored to revision from %2$s.' ),
 		/* translators: %s: post type singular label */
-		'preview'       => __( 'Preview %s.', 'post-updated-messages' ),
-		'field_updated' => __( 'Custom field updated.', 'post-updated-messages' ),
-		'field_deleted' => __( 'Custom field deleted.', 'post-updated-messages' ),
+		'preview'       => esc_html__( 'Preview %s.', 'post-updated-messages' ),
+		'field_updated' => esc_html__( 'Custom field updated.', 'post-updated-messages' ),
+		'field_deleted' => esc_html__( 'Custom field deleted.', 'post-updated-messages' ),
 	);
 
 	/**
@@ -159,21 +159,21 @@ function pum_single_messages( $messages ) {
 
 	$messages[ $post_type ] = array(
 		0  => '', // Unused. Messages start at index 1.
-		1  => sprintf( esc_html( $actions['updated'] ), $labels->singular_name ) . $view_post_link_html,
-		2  => esc_html( $actions['field_updated'] ),
-		3  => esc_html( $actions['field_deleted'] ),
-		4  => sprintf( esc_html( $actions['updated'] ), $labels->singular_name ),
+		1  => sprintf( $actions['updated'], $labels->singular_name ) . $view_post_link_html,
+		2  => $actions['field_updated'],
+		3  => $actions['field_deleted'],
+		4  => sprintf( $actions['updated'], $labels->singular_name ),
 		5  => isset( $_GET['revision'] ) ?
-			sprintf( esc_html( $actions['revision'] ),
+			sprintf( $actions['revision'],
 				$labels->singular_name,
 				wp_post_revision_title( (int) $_GET['revision'], false )
 			) :
 			false,
-		6  => sprintf( esc_html( $actions['published'] ), $labels->singular_name ) . $view_post_link_html,
-		7  => sprintf( esc_html( $actions['saved'] ), $labels->singular_name ),
-		8  => sprintf( esc_html( $actions['submitted'] ), $labels->singular_name ) . $preview_post_link_html,
-		9  => sprintf( esc_html( $actions['scheduled'] ), $labels->singular_name, '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_post_link_html,
-		10 => sprintf( esc_html( $actions['draft_updated'] ), $labels->singular_name ) . $preview_post_link_html,
+		6  => sprintf( $actions['published'], $labels->singular_name ) . $view_post_link_html,
+		7  => sprintf( $actions['saved'], $labels->singular_name ),
+		8  => sprintf( $actions['submitted'], $labels->singular_name ) . $preview_post_link_html,
+		9  => sprintf( $actions['scheduled'], $labels->singular_name, '<strong>' . $scheduled_date . '</strong>' ) . $scheduled_post_link_html,
+		10 => sprintf( $actions['draft_updated'], $labels->singular_name ) . $preview_post_link_html,
 	);
 
 	return $messages;
