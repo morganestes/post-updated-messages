@@ -25,7 +25,7 @@ GNU General Public License for more details.
 
 */
 
-define( 'PUM_VERSION', '0.1.0' );
+define( 'PUM_VERSION', '1.0.9' );
 
 add_action( 'admin_init', 'pum_setup' );
 
