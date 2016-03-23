@@ -140,21 +140,18 @@ function pum_single_messages( $messages ) {
 
 	if ( $viewable ) {
 		// Preview post link.
-		/* translators: 1: preview URL, 2: post type label */
 		$preview_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $preview_url ),
 			sprintf( $actions['preview'], $labels->singular_name )
 		);
 
 		// Scheduled post preview link.
-		/* translators: 1: preview URL, 2: post type label */
 		$scheduled_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $permalink ),
 			sprintf( $actions['preview'], $labels->singular_name )
 		);
 
 		// View post link.
-		/* translators: 1: preview URL, 2: "View Item" label */
 		$view_post_link_html = sprintf( '&nbsp;<a href="%1$s">%2$s</a>.',
 			esc_url( $permalink ),
 			esc_html( $labels->view_item )
