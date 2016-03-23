@@ -31,7 +31,7 @@ Sure. You can add your post type slug to the `pum_post_types_nofilter` filter to
 
 = Can I change a message? =
 
-Yep. Use the `pum_post_actions` filter to change the action words (e.g. "updated", "published"), or `pum_post_bulk_messages` filter for the bulk actions (e.g "permanently deleted", "moved to the Trash" ).
+Yep. Use the `pum_post_messages` filter to change the action words (e.g. "updated", "published"), or `pum_post_bulk_messages` filter for the bulk actions (e.g "permanently deleted", "moved to the Trash" ).
 
 = Can I change the post type name? =
 

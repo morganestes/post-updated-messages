@@ -104,7 +104,7 @@ function pum_single_messages( $messages ) {
 	$viewable               = is_post_type_viewable( $post_type_object );
 	$labels                 = get_post_type_labels( $post_type_object );
 
-	$actions = array(
+	$post_messages = array(
 		/* translators: 1: post type singular label, 2: preview link */
 		'updated'       => __( '%1$ss updated.%2$s', 'post-updated-messages' ),
 		/* translators: 1: post type singular label, 2: preview link */
@@ -136,10 +136,10 @@ function pum_single_messages( $messages ) {
 	 *
 	 * @param array $actions The strings for each of the actions performed on save.
 	 */
-	$actions = apply_filters( 'pum_post_actions', $actions );
+	$post_messages = apply_filters( 'pum_post_messages', $post_messages );
 
-	if ( is_array( $actions ) ) {
-		$actions = array_map( 'esc_html', $actions );
+	if ( is_array( $post_messages ) ) {
+		$post_messages = array_map( 'esc_html', $post_messages );
 	} else {
 		return $messages;
 	}
@@ -148,13 +148,13 @@ function pum_single_messages( $messages ) {
 		// Preview post link.
 		$preview_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $preview_url ),
-			sprintf( $actions['preview'], $labels->singular_name )
+			sprintf( $post_messages['preview'], $labels->singular_name )
 		);
 
 		// Scheduled post preview link.
 		$scheduled_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $permalink ),
-			sprintf( $actions['preview'], $labels->singular_name )
+			sprintf( $post_messages['preview'], $labels->singular_name )
 		);
 
 		// View post link.
@@ -166,19 +166,19 @@ function pum_single_messages( $messages ) {
 
 	$messages[ $post_type ] = array(
 		0  => '', // Unused. Messages start at index 1.
-		1  => sprintf( $actions['updated'], $labels->singular_name, $view_post_link_html ),
-		2  => $actions['field_updated'],
-		3  => $actions['field_deleted'],
-		4  => sprintf( $actions['updated'], $labels->singular_name ),
+		1  => sprintf( $post_messages['updated'], $labels->singular_name, $view_post_link_html ),
+		2  => $post_messages['field_updated'],
+		3  => $post_messages['field_deleted'],
+		4  => sprintf( $post_messages['updated'], $labels->singular_name ),
 		5  => isset( $_GET['revision'] ) ?
-			sprintf( $actions['revision'], $labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) :
+			sprintf( $post_messages['revision'], $labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) :
 			false,
-		6  => sprintf( $actions['published'], $labels->singular_name, $view_post_link_html ),
-		7  => sprintf( $actions['saved'], $labels->singular_name ),
-		8  => sprintf( $actions['submitted'], $labels->singular_name, $preview_post_link_html ),
-		9  => sprintf( $actions['scheduled'], $labels->singular_name, '<strong>' . $scheduled_date . '</strong>',
+		6  => sprintf( $post_messages['published'], $labels->singular_name, $view_post_link_html ),
+		7  => sprintf( $post_messages['saved'], $labels->singular_name ),
+		8  => sprintf( $post_messages['submitted'], $labels->singular_name, $preview_post_link_html ),
+		9  => sprintf( $post_messages['scheduled'], $labels->singular_name, '<strong>' . $scheduled_date . '</strong>',
 			$scheduled_post_link_html ),
-		10 => sprintf( $actions['draft_updated'], $labels->singular_name, $preview_post_link_html ),
+		10 => sprintf( $post_messages['draft_updated'], $labels->singular_name, $preview_post_link_html ),
 	);
 
 	do_action( 'pum_after_single_messages', $post_type );
