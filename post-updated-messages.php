@@ -2,7 +2,7 @@
 /*
 Plugin Name: Post Updated Messages
 Description: Updated messages that actually look like they belong.
-Version:     1.0.9
+Version:     0.1.0
 Plugin URI:  https://morganestes.com/post-updated-messages-plugin/
 Author:      Morgan Estes
 Author URI:  https://morganestes.com/
