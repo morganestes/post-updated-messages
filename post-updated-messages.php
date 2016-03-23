@@ -30,11 +30,13 @@ define( 'PUM_VERSION', '0.1.0' );
 add_action( 'admin_init', 'pum_setup' );
 
 function pum_setup() {
+	do_action( 'pum_before_setup' );
 
 	add_filter( 'post_updated_messages', 'pum_single_messages', 10, 1 );
 	add_filter( 'bulk_post_updated_messages', 'pum_bulk_messages', 10, 2 );
 	//add_action( 'plugins_loaded', 'pum_load_plugin_translation' );
 
+	do_action( 'pum_after_setup' );
 }
 
 function pum_load_plugin_translation() {
