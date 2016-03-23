@@ -134,7 +134,7 @@ function pum_single_messages( $messages ) {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param array $actions The strings for each of the actions performed on save.
+	 * @param array  $actions   The strings for each of the actions performed on save.
 	 * @param string $post_type The current post type, for reference.
 	 */
 	$post_messages = apply_filters( 'pum_post_messages', $post_messages, $post_type );
@@ -205,7 +205,7 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	do_action( 'pum_before_bulk_messages', $post_type );
 
 	// Core runs the filtered strings through sprintf(), so ensure the '%s' placeholder remains for the count.
-	$bulk_messages[ $post_type ] = array(
+	$post_bulk_messages = array(
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
 		'updated'   => sprintf( _n(
 			esc_html( '%1$s %2$s updated.' ),
@@ -241,6 +241,16 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 				number_format_i18n( $bulk_counts['locked'] ), 'post-updated-messages' ),
 				'%s', $labels->singular_name, $labels->name ),
 	);
+
+	/**
+	 * Filter the bulk messages before sending them back to core.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array  $post_bulk_messages The bulk messages for this post type.
+	 * @param string $post_type          The current post type, for reference.
+	 */
+	$bulk_messages[ $post_type ] = apply_filters( 'pum_post_bulk_messages', $post_bulk_messages, $post_type );
 
 	do_action( 'pum_after_bulk_messages', $post_type );
 
