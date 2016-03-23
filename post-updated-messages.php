@@ -135,8 +135,9 @@ function pum_single_messages( $messages ) {
 	 * @since 0.1.0
 	 *
 	 * @param array $actions The strings for each of the actions performed on save.
+	 * @param string $post_type The current post type, for reference.
 	 */
-	$post_messages = apply_filters( 'pum_post_messages', $post_messages );
+	$post_messages = apply_filters( 'pum_post_messages', $post_messages, $post_type );
 
 	if ( is_array( $post_messages ) ) {
 		$post_messages = array_map( 'esc_html', $post_messages );
