@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Post Updated Messages 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-updated-"
 "messages\n"
-"POT-Creation-Date: 2016-03-23 01:19:49+00:00\n"
+"POT-Creation-Date: 2016-03-23 02:47:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,61 +13,61 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: post-updated-messages.php:98
+#: post-updated-messages.php:102
 msgid "M j, Y @ H:i"
 msgstr ""
 
 #. translators: 1: post type singular label, 2: preview link
-#: post-updated-messages.php:105
+#: post-updated-messages.php:109
 msgid "%1$ss updated.%2$s"
 msgstr ""
 
 #. translators: 1: post type singular label, 2: preview link
-#: post-updated-messages.php:107
+#: post-updated-messages.php:111
 msgid "%1$s draft updated.%2$s"
 msgstr ""
 
 #. translators: %s: post type singular label
-#: post-updated-messages.php:109
+#: post-updated-messages.php:113
 msgid "%s saved."
 msgstr ""
 
 #. translators: 1: post type singular label, 2: preview link
-#: post-updated-messages.php:111
+#: post-updated-messages.php:115
 msgid "%1$s submitted.%2$s"
 msgstr ""
 
 #. translators: 1: post type singular label, 2: preview link
-#: post-updated-messages.php:113
+#: post-updated-messages.php:117
 msgid "%1$s published.%2$s"
 msgstr ""
 
 #. translators: 1: post type label, 2: scheduled publish date and time, 3:
 #. preview link
-#: post-updated-messages.php:115
+#: post-updated-messages.php:119
 msgid "%1$s scheduled for: %2$s.%3$s"
 msgstr ""
 
 #. translators: 1: post type label, 2: date and time of the revision
-#: post-updated-messages.php:117
+#: post-updated-messages.php:121
 msgid "%1$s restored to revision from %2$s."
 msgstr ""
 
 #. translators: %s: post type singular label
-#: post-updated-messages.php:119
+#: post-updated-messages.php:123
 msgid "Preview %s."
 msgstr ""
 
-#: post-updated-messages.php:120
+#: post-updated-messages.php:124
 msgid "Custom field updated."
 msgstr ""
 
-#: post-updated-messages.php:121
+#: post-updated-messages.php:125
 msgid "Custom field deleted."
 msgstr ""
 
 #. translators: %s is the post type single name
-#: post-updated-messages.php:230
+#: post-updated-messages.php:235
 msgid "1 %s not updated, somebody is editing it."
 msgstr ""
 
