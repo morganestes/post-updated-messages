@@ -2,7 +2,7 @@
 /*
 Plugin Name: Post Updated Messages
 Description: Updated messages that actually look like they belong.
-Version:     1.0.9
+Version:     0.1.0
 Plugin URI:  https://morganestes.com/post-updated-messages-plugin/
 Author:      Morgan Estes
 Author URI:  https://morganestes.com/
@@ -30,11 +30,13 @@ define( 'PUM_VERSION', '0.1.0' );
 add_action( 'admin_init', 'pum_setup' );
 
 function pum_setup() {
+	do_action( 'pum_before_setup' );
 
 	add_filter( 'post_updated_messages', 'pum_single_messages', 10, 1 );
 	add_filter( 'bulk_post_updated_messages', 'pum_bulk_messages', 10, 2 );
 	//add_action( 'plugins_loaded', 'pum_load_plugin_translation' );
 
+	do_action( 'pum_after_setup' );
 }
 
 function pum_load_plugin_translation() {
@@ -140,21 +142,18 @@ function pum_single_messages( $messages ) {
 
 	if ( $viewable ) {
 		// Preview post link.
-		/* translators: 1: preview URL, 2: post type label */
 		$preview_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $preview_url ),
 			sprintf( $actions['preview'], $labels->singular_name )
 		);
 
 		// Scheduled post preview link.
-		/* translators: 1: preview URL, 2: post type label */
 		$scheduled_post_link_html = sprintf( '&nbsp;<a target="_blank" href="%1$s">%2$s</a>.',
 			esc_url( $permalink ),
 			sprintf( $actions['preview'], $labels->singular_name )
 		);
 
 		// View post link.
-		/* translators: 1: preview URL, 2: "View Item" label */
 		$view_post_link_html = sprintf( '&nbsp;<a href="%1$s">%2$s</a>.',
 			esc_url( $permalink ),
 			esc_html( $labels->view_item )
