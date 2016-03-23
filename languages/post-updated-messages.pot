@@ -1,0 +1,92 @@
+# Copyright (C) 2016 Post Updated Messages
+# This file is distributed under the same license as the Post Updated Messages package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Post Updated Messages 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-updated-"
+"messages\n"
+"POT-Creation-Date: 2016-03-23 01:19:49+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: post-updated-messages.php:98
+msgid "M j, Y @ H:i"
+msgstr ""
+
+#. translators: 1: post type singular label, 2: preview link
+#: post-updated-messages.php:105
+msgid "%1$ss updated.%2$s"
+msgstr ""
+
+#. translators: 1: post type singular label, 2: preview link
+#: post-updated-messages.php:107
+msgid "%1$s draft updated.%2$s"
+msgstr ""
+
+#. translators: %s: post type singular label
+#: post-updated-messages.php:109
+msgid "%s saved."
+msgstr ""
+
+#. translators: 1: post type singular label, 2: preview link
+#: post-updated-messages.php:111
+msgid "%1$s submitted.%2$s"
+msgstr ""
+
+#. translators: 1: post type singular label, 2: preview link
+#: post-updated-messages.php:113
+msgid "%1$s published.%2$s"
+msgstr ""
+
+#. translators: 1: post type label, 2: scheduled publish date and time, 3:
+#. preview link
+#: post-updated-messages.php:115
+msgid "%1$s scheduled for: %2$s.%3$s"
+msgstr ""
+
+#. translators: 1: post type label, 2: date and time of the revision
+#: post-updated-messages.php:117
+msgid "%1$s restored to revision from %2$s."
+msgstr ""
+
+#. translators: %s: post type singular label
+#: post-updated-messages.php:119
+msgid "Preview %s."
+msgstr ""
+
+#: post-updated-messages.php:120
+msgid "Custom field updated."
+msgstr ""
+
+#: post-updated-messages.php:121
+msgid "Custom field deleted."
+msgstr ""
+
+#. translators: %s is the post type single name
+#: post-updated-messages.php:230
+msgid "1 %s not updated, somebody is editing it."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Post Updated Messages"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://morganestes.com/post-updated-messages-plugin/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Updated messages that actually look like they belong."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Morgan Estes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://morganestes.com/"
+msgstr ""

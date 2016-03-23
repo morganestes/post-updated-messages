@@ -7,7 +7,7 @@ Plugin URI:  https://morganestes.com/post-updated-messages-plugin/
 Author:      Morgan Estes
 Author URI:  https://morganestes.com/
 Text Domain: post-updated-messages
-Domain Path: /language/
+Domain Path: /languages/
 
 License:     GPL v2 or later
 
@@ -34,14 +34,18 @@ function pum_setup() {
 
 	add_filter( 'post_updated_messages', 'pum_single_messages', 10, 1 );
 	add_filter( 'bulk_post_updated_messages', 'pum_bulk_messages', 10, 2 );
-	//add_action( 'plugins_loaded', 'pum_load_plugin_translation' );
+	add_action( 'plugins_loaded', 'pum_load_plugin_textdomain' );
 
 	do_action( 'pum_after_setup' );
 }
 
-function pum_load_plugin_translation() {
-
-
+/**
+ * Load the translation files for the plugin.
+ *
+ * @since 0.1.0
+ */
+function pum_load_plugin_textdomain() {
+	load_plugin_textdomain( 'post-updated-messages', false, plugin_dir_path( __FILE__ ) . '/languages/' );
 }
 
 /**
