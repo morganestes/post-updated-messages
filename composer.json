@@ -1,0 +1,22 @@
+{
+    "name": "morganestes/post-updated-messages",
+    "description": "Tailored updated messages for custom post types.",
+    "type": "wordpress-plugin",
+    "keywords" : ["wordpress", "plugin", "post types", "messages"],
+    "homepage": "https://morganestes.com/plugins/post-updated-messages",
+    "license": "GPL2+",
+    "authors": [
+        {
+            "name": "Morgan Estes",
+            "email": "morgan.estes@gmail.com",
+            "homepage": "https://morganestes.com"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0",
+        "php": ">=5.2.4"
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "dev-master"
+    }
+}
