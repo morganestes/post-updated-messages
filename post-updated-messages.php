@@ -1,4 +1,13 @@
 <?php
+/**
+ * Post Updated Messages plugin
+ *
+ * @package PostUpdatedMessages
+ * @version 0.1.0
+ * @author  Morgan Estes <morgan.estes@gmail.com>
+ * @license GPL2+
+ */
+
 /*
 Plugin Name: Post Updated Messages
 Description: Tailored updated messages for custom post types.
@@ -31,6 +40,11 @@ define( 'PUM_VERSION', '0.1.0' );
 
 add_action( 'admin_init', 'pum_setup' );
 
+/**
+ * Sets up the plugins' hooks.
+ *
+ * @since 0.1.0
+ */
 function pum_setup() {
 	do_action( 'pum_before_setup' );
 
