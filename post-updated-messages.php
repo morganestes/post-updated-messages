@@ -8,21 +8,23 @@ Author:      Morgan Estes
 Author URI:  https://morganestes.com/
 Text Domain: post-updated-messages
 Domain Path: /languages/
-
 License:     GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Copyright © 2016 Morgan Estes
 
-This program is free software; you can redistribute it and/or modify
+Post Updated Messages is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+the Free Software Foundation, either version 2 of the License, or
+any later version.
 
-This program is distributed in the hope that it will be useful,
+Post Updated Messages is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
+You should have received a copy of the GNU General Public License
+along with Post Updated Messages. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
 define( 'PUM_VERSION', '0.1.0' );
