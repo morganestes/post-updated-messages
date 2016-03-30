@@ -29,7 +29,7 @@ any later version.
 
 Post Updated Messages is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
@@ -187,14 +187,21 @@ function pum_single_messages( $messages ) {
 		2  => $post_messages['field_updated'],
 		3  => $post_messages['field_deleted'],
 		4  => sprintf( $post_messages['updated'], $labels->singular_name ),
-		5  => isset( $_GET['revision'] ) ?
-			sprintf( $post_messages['revision'], $labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) :
+		5  => isset( $_GET['revision'] ) ? // WPCS: okay.
+			sprintf(
+				$post_messages['revision'],
+				$labels->singular_name,
+				wp_post_revision_title( (int) $_GET['revision'], false )
+			) :
 			false,
 		6  => sprintf( $post_messages['published'], $labels->singular_name, $view_post_link_html ),
 		7  => sprintf( $post_messages['saved'], $labels->singular_name ),
 		8  => sprintf( $post_messages['submitted'], $labels->singular_name, $preview_post_link_html ),
-		9  => sprintf( $post_messages['scheduled'], $labels->singular_name, '<strong>' . $scheduled_date . '</strong>',
-			$scheduled_post_link_html ),
+		9  => sprintf( $post_messages['scheduled'],
+			$labels->singular_name,
+			'<strong>' . $scheduled_date . '</strong>',
+			$scheduled_post_link_html
+		),
 		10 => sprintf( $post_messages['draft_updated'], $labels->singular_name, $preview_post_link_html ),
 	);
 
@@ -223,39 +230,70 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	// Core runs the filtered strings through sprintf(), so ensure the '%s' placeholder remains for the count.
 	$post_bulk_messages = array(
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'updated'   => sprintf( _n(
-			esc_html( '%1$s %2$s updated.' ),
-			esc_html( '%1$s %3$s updated.' ),
-			number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'updated'   => sprintf(
+			_n(
+				esc_html( '%1$s %2$s updated.' ),
+				esc_html( '%1$s %3$s updated.' ),
+				number_format_i18n( $bulk_counts['updated'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'deleted'   => sprintf( _n(
-			esc_html( '%1$s %2$s permanently deleted.' ),
-			esc_html( '%1$s %3$s permanently deleted.' ),
-			number_format_i18n( $bulk_counts['deleted'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'deleted'   => sprintf(
+			_n(
+				esc_html( '%1$s %2$s permanently deleted.' ),
+				esc_html( '%1$s %3$s permanently deleted.' ),
+				number_format_i18n( $bulk_counts['deleted'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'trashed'   => sprintf( _n(
-			esc_html( '%1$s %2$s moved to the Trash.' ),
-			esc_html( '%1$s %3$s moved to the Trash.' ),
-			number_format_i18n( $bulk_counts['trashed'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'trashed'   => sprintf(
+			_n(
+				esc_html( '%1$s %2$s moved to the Trash.' ),
+				esc_html( '%1$s %3$s moved to the Trash.' ),
+				number_format_i18n( $bulk_counts['trashed'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'untrashed' => sprintf( _n(
-			esc_html( '%1$s %2$s restored from the Trash.' ),
-			esc_html( '%1$s %3$s restored from the Trash.' ),
-			number_format_i18n( $bulk_counts['untrashed'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'untrashed' => sprintf(
+			_n(
+				esc_html( '%1$s %2$s restored from the Trash.' ),
+				esc_html( '%1$s %3$s restored from the Trash.' ),
+				number_format_i18n( $bulk_counts['untrashed'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		'locked'    => ( 1 === $bulk_counts['locked'] ) ?
 			/* translators: %s is the post type single name */
 			sprintf( esc_html__( '1 %s not updated, somebody is editing it.', 'post-updated-messages' ),
-				$labels->singular_name ) :
+				$labels->singular_name
+			) :
 			/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-			sprintf( _n(
-				esc_html( '%1$s %2$s not updated, somebody is editing it.' ),
-				esc_html( '%1$s %3$s not updated, somebody is editing them.' ),
-				number_format_i18n( $bulk_counts['locked'] ), 'post-updated-messages' ),
-				'%s', $labels->singular_name, $labels->name ),
+			sprintf(
+				_n(
+					esc_html( '%1$s %2$s not updated, somebody is editing it.' ),
+					esc_html( '%1$s %3$s not updated, somebody is editing them.' ),
+					number_format_i18n( $bulk_counts['locked'] ),
+					'post-updated-messages'
+				),
+				'%s',
+				$labels->singular_name,
+				$labels->name
+			),
 	);
 
 	/**
