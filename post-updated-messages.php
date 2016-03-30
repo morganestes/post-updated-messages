@@ -3,7 +3,7 @@
  * Post Updated Messages plugin
  *
  * @package PostUpdatedMessages
- * @version 0.1.0
+ * @version 1.0.0
  * @author  Morgan Estes <morgan.estes@gmail.com>
  * @license GPL2+
  */
@@ -11,7 +11,7 @@
 /*
 Plugin Name: Post Updated Messages
 Description: Tailored updated messages for custom post types.
-Version:     0.1.0
+Version:     1.0.0
 Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
 Author:      Morgan Estes
 Author URI:  https://morganestes.com/
@@ -36,14 +36,14 @@ You should have received a copy of the GNU General Public License
 along with Post Updated Messages. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
-define( 'PUM_VERSION', '0.1.0' );
+define( 'PUM_VERSION', '1.0.0' );
 
 add_action( 'admin_init', 'pum_setup' );
 
 /**
  * Sets up the plugins' hooks.
  *
- * @since 0.1.0
+ * @since 1.0.0
  */
 function pum_setup() {
 	do_action( 'pum_before_setup' );
@@ -58,7 +58,7 @@ function pum_setup() {
 /**
  * Load the translation files for the plugin.
  *
- * @since 0.1.0
+ * @since 1.0.0
  */
 function pum_load_plugin_textdomain() {
 	load_plugin_textdomain( 'post-updated-messages', false, plugin_dir_path( __FILE__ ) . '/languages/' );
@@ -67,7 +67,7 @@ function pum_load_plugin_textdomain() {
 /**
  * Get the post types to use in the plugin.
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @return array The filtered array of post types.
  */
@@ -78,7 +78,7 @@ function get_pum_post_types() {
 	 * By default, all post types will have custom messages applied.
 	 * Adding a post type to this list will use the default 'post' messages.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $post_types_nofilter Array of post type slugs to exclude. Default 'post' and 'page'.
 	 */
@@ -94,7 +94,7 @@ function get_pum_post_types() {
 /**
  * Customize the update messages for the post type.
  *
- * @since    0.1.0
+ * @since    1.0.0
  * @callback 'post_updated_messages' filter.
  *
  * @param array $messages A post-type-indexed array of message strings.
@@ -148,7 +148,7 @@ function pum_single_messages( $messages ) {
 	 * prior to combining them with the actions strings. This filter allows specific messages
 	 * to be reset to the default 'post' value by unsetting the key for that message.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $actions   The strings for each of the actions performed on save.
 	 * @param string $post_type The current post type, for reference.
@@ -213,7 +213,7 @@ function pum_single_messages( $messages ) {
 /**
  * Add custom messages to the bulk actions for custom post types.
  *
- * @since    0.1.0
+ * @since    1.0.0
  * @callback 'bulk_post_updated_messages' filter.
  *
  * @param array $bulk_messages Message strings to filter.
@@ -299,7 +299,7 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	/**
 	 * Filter the bulk messages before sending them back to core.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $post_bulk_messages The bulk messages for this post type.
 	 * @param string $post_type          The current post type, for reference.
