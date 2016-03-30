@@ -1,34 +1,50 @@
 <?php
+/**
+ * Post Updated Messages plugin
+ *
+ * @package PostUpdatedMessages
+ * @version 1.0.0
+ * @author  Morgan Estes <morgan.estes@gmail.com>
+ * @license GPL2+
+ */
+
 /*
 Plugin Name: Post Updated Messages
-Description: Updated messages that actually look like they belong.
-Version:     0.1.0
-Plugin URI:  https://morganestes.com/post-updated-messages-plugin/
+Description: Tailored updated messages for custom post types.
+Version:     1.0.0
+Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
 Author:      Morgan Estes
 Author URI:  https://morganestes.com/
 Text Domain: post-updated-messages
 Domain Path: /languages/
-
 License:     GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Copyright © 2016 Morgan Estes
 
-This program is free software; you can redistribute it and/or modify
+Post Updated Messages is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+the Free Software Foundation, either version 2 of the License, or
+any later version.
 
-This program is distributed in the hope that it will be useful,
+Post Updated Messages is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
+You should have received a copy of the GNU General Public License
+along with Post Updated Messages. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
-define( 'PUM_VERSION', '0.1.0' );
+define( 'PUM_VERSION', '1.0.0' );
 
 add_action( 'admin_init', 'pum_setup' );
 
+/**
+ * Sets up the plugins' hooks.
+ *
+ * @since 1.0.0
+ */
 function pum_setup() {
 	do_action( 'pum_before_setup' );
 
@@ -42,7 +58,7 @@ function pum_setup() {
 /**
  * Load the translation files for the plugin.
  *
- * @since 0.1.0
+ * @since 1.0.0
  */
 function pum_load_plugin_textdomain() {
 	load_plugin_textdomain( 'post-updated-messages', false, plugin_dir_path( __FILE__ ) . '/languages/' );
@@ -51,7 +67,7 @@ function pum_load_plugin_textdomain() {
 /**
  * Get the post types to use in the plugin.
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @return array The filtered array of post types.
  */
@@ -62,7 +78,7 @@ function get_pum_post_types() {
 	 * By default, all post types will have custom messages applied.
 	 * Adding a post type to this list will use the default 'post' messages.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $post_types_nofilter Array of post type slugs to exclude. Default 'post' and 'page'.
 	 */
@@ -78,7 +94,7 @@ function get_pum_post_types() {
 /**
  * Customize the update messages for the post type.
  *
- * @since    0.1.0
+ * @since    1.0.0
  * @callback 'post_updated_messages' filter.
  *
  * @param array $messages A post-type-indexed array of message strings.
@@ -132,7 +148,7 @@ function pum_single_messages( $messages ) {
 	 * prior to combining them with the actions strings. This filter allows specific messages
 	 * to be reset to the default 'post' value by unsetting the key for that message.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $actions   The strings for each of the actions performed on save.
 	 * @param string $post_type The current post type, for reference.
@@ -171,14 +187,21 @@ function pum_single_messages( $messages ) {
 		2  => $post_messages['field_updated'],
 		3  => $post_messages['field_deleted'],
 		4  => sprintf( $post_messages['updated'], $labels->singular_name ),
-		5  => isset( $_GET['revision'] ) ?
-			sprintf( $post_messages['revision'], $labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) :
+		5  => isset( $_GET['revision'] ) ? // WPCS: okay.
+			sprintf(
+				$post_messages['revision'],
+				$labels->singular_name,
+				wp_post_revision_title( (int) $_GET['revision'], false )
+			) :
 			false,
 		6  => sprintf( $post_messages['published'], $labels->singular_name, $view_post_link_html ),
 		7  => sprintf( $post_messages['saved'], $labels->singular_name ),
 		8  => sprintf( $post_messages['submitted'], $labels->singular_name, $preview_post_link_html ),
-		9  => sprintf( $post_messages['scheduled'], $labels->singular_name, '<strong>' . $scheduled_date . '</strong>',
-			$scheduled_post_link_html ),
+		9  => sprintf( $post_messages['scheduled'],
+			$labels->singular_name,
+			'<strong>' . $scheduled_date . '</strong>',
+			$scheduled_post_link_html
+		),
 		10 => sprintf( $post_messages['draft_updated'], $labels->singular_name, $preview_post_link_html ),
 	);
 
@@ -190,7 +213,7 @@ function pum_single_messages( $messages ) {
 /**
  * Add custom messages to the bulk actions for custom post types.
  *
- * @since    0.1.0
+ * @since    1.0.0
  * @callback 'bulk_post_updated_messages' filter.
  *
  * @param array $bulk_messages Message strings to filter.
@@ -207,45 +230,76 @@ function pum_bulk_messages( $bulk_messages, $bulk_counts ) {
 	// Core runs the filtered strings through sprintf(), so ensure the '%s' placeholder remains for the count.
 	$post_bulk_messages = array(
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'updated'   => sprintf( _n(
-			esc_html( '%1$s %2$s updated.' ),
-			esc_html( '%1$s %3$s updated.' ),
-			number_format_i18n( $bulk_counts['updated'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'updated'   => sprintf(
+			_n(
+				esc_html( '%1$s %2$s updated.' ),
+				esc_html( '%1$s %3$s updated.' ),
+				number_format_i18n( $bulk_counts['updated'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'deleted'   => sprintf( _n(
-			esc_html( '%1$s %2$s permanently deleted.' ),
-			esc_html( '%1$s %3$s permanently deleted.' ),
-			number_format_i18n( $bulk_counts['deleted'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'deleted'   => sprintf(
+			_n(
+				esc_html( '%1$s %2$s permanently deleted.' ),
+				esc_html( '%1$s %3$s permanently deleted.' ),
+				number_format_i18n( $bulk_counts['deleted'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'trashed'   => sprintf( _n(
-			esc_html( '%1$s %2$s moved to the Trash.' ),
-			esc_html( '%1$s %3$s moved to the Trash.' ),
-			number_format_i18n( $bulk_counts['trashed'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'trashed'   => sprintf(
+			_n(
+				esc_html( '%1$s %2$s moved to the Trash.' ),
+				esc_html( '%1$s %3$s moved to the Trash.' ),
+				number_format_i18n( $bulk_counts['trashed'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-		'untrashed' => sprintf( _n(
-			esc_html( '%1$s %2$s restored from the Trash.' ),
-			esc_html( '%1$s %3$s restored from the Trash.' ),
-			number_format_i18n( $bulk_counts['untrashed'] ), 'post-updated-messages' ),
-			'%s', $labels->singular_name, $labels->name ),
+		'untrashed' => sprintf(
+			_n(
+				esc_html( '%1$s %2$s restored from the Trash.' ),
+				esc_html( '%1$s %3$s restored from the Trash.' ),
+				number_format_i18n( $bulk_counts['untrashed'] ),
+				'post-updated-messages'
+			),
+			'%s',
+			$labels->singular_name,
+			$labels->name
+		),
 		'locked'    => ( 1 === $bulk_counts['locked'] ) ?
 			/* translators: %s is the post type single name */
 			sprintf( esc_html__( '1 %s not updated, somebody is editing it.', 'post-updated-messages' ),
-				$labels->singular_name ) :
+				$labels->singular_name
+			) :
 			/* translators: 1: the literal string '%s', 2: post type single name, 3: post type plural name */
-			sprintf( _n(
-				esc_html( '%1$s %2$s not updated, somebody is editing it.' ),
-				esc_html( '%1$s %3$s not updated, somebody is editing them.' ),
-				number_format_i18n( $bulk_counts['locked'] ), 'post-updated-messages' ),
-				'%s', $labels->singular_name, $labels->name ),
+			sprintf(
+				_n(
+					esc_html( '%1$s %2$s not updated, somebody is editing it.' ),
+					esc_html( '%1$s %3$s not updated, somebody is editing them.' ),
+					number_format_i18n( $bulk_counts['locked'] ),
+					'post-updated-messages'
+				),
+				'%s',
+				$labels->singular_name,
+				$labels->name
+			),
 	);
 
 	/**
 	 * Filter the bulk messages before sending them back to core.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $post_bulk_messages The bulk messages for this post type.
 	 * @param string $post_type          The current post type, for reference.
