@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Post Updated Messages
-Description: Updated messages that actually look like they belong.
+Description: Tailored updated messages for custom post types.
 Version:     0.1.0
 Plugin URI:  https://morganestes.com/post-updated-messages-plugin/
 Author:      Morgan Estes
