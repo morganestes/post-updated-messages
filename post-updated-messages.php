@@ -1,13 +1,4 @@
 <?php
-/**
- * Post Updated Messages plugin
- *
- * @package PostUpdatedMessages
- * @version 1.0.0
- * @author  Morgan Estes <morgan.estes@gmail.com>
- * @license GPL2+
- */
-
 /*
 Plugin Name: Post Updated Messages
 Description: Tailored updated messages for custom post types.
