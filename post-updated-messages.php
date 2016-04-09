@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: Post Updated Messages
-Description: Tailored updated messages for custom post types.
-Version:     1.0.0
-Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
-Author:      Morgan Estes
-Author URI:  https://morganestes.com/
-Text Domain: post-updated-messages
-Domain Path: /languages/
-License:     GPL v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin Name: Post Updated Messages
+ * Description: Tailored updated messages for custom post types.
+ * Version:     1.0.0
+ * Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
+ * Author:      Morgan Estes
+ * Author URI:  https://morganestes.com/
+ * Text Domain: post-updated-messages
+ * Domain Path: /languages/
+ * License:     GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Copyright © 2016 Morgan Estes
 
