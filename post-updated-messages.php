@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Post Updated Messages
  * Description: Tailored updated messages for custom post types.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
  * Author:      Morgan Estes
  * Author URI:  https://morganestes.com/
