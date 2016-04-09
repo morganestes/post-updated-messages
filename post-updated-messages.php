@@ -113,7 +113,7 @@ function pum_single_messages( $messages ) {
 
 	$post_messages = array(
 		/* translators: 1: post type singular label, 2: preview link */
-		'updated'       => __( '%1$ss updated.%2$s', 'post-updated-messages' ),
+		'updated'       => __( '%1$s updated.%2$s', 'post-updated-messages' ),
 		/* translators: 1: post type singular label, 2: preview link */
 		'draft_updated' => __( '%1$s draft updated.%2$s', 'post-updated-messages' ),
 		/* translators: %s: post type singular label */
