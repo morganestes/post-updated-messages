@@ -70,6 +70,7 @@ package.json
 phpunit.xml
 .travis.yml
 bootstrap.php
+assets
 tests" "$SVNPATH/trunk/"
 
 echo "Changing directory to SVN and committing to trunk"
