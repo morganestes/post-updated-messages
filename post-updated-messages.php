@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: Post Updated Messages
-Description: Tailored updated messages for custom post types.
-Version:     1.0.0
-Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
-Author:      Morgan Estes
-Author URI:  https://morganestes.com/
-Text Domain: post-updated-messages
-Domain Path: /languages/
-License:     GPL v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin Name: Post Updated Messages
+ * Description: Tailored updated messages for custom post types.
+ * Version:     1.0.0
+ * Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
+ * Author:      Morgan Estes
+ * Author URI:  https://morganestes.com/
+ * Text Domain: post-updated-messages
+ * Domain Path: /languages/
+ * License:     GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Copyright © 2016 Morgan Estes
 
@@ -113,7 +113,7 @@ function pum_single_messages( $messages ) {
 
 	$post_messages = array(
 		/* translators: 1: post type singular label, 2: preview link */
-		'updated'       => __( '%1$ss updated.%2$s', 'post-updated-messages' ),
+		'updated'       => __( '%1$s updated.%2$s', 'post-updated-messages' ),
 		/* translators: 1: post type singular label, 2: preview link */
 		'draft_updated' => __( '%1$s draft updated.%2$s', 'post-updated-messages' ),
 		/* translators: %s: post type singular label */
