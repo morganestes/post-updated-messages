@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Post Updated Messages
  * Description: Tailored updated messages for custom post types.
- * Version:     1.0.1
+ * Version:     1.0.2
  * Plugin URI:  https://morganestes.com/plugins/post-updated-messages/
  * Author:      Morgan Estes
  * Author URI:  https://morganestes.com/
@@ -177,7 +177,7 @@ function pum_single_messages( $messages ) {
 		1  => sprintf( $post_messages['updated'], $labels->singular_name, $view_post_link_html ),
 		2  => $post_messages['field_updated'],
 		3  => $post_messages['field_deleted'],
-		4  => sprintf( $post_messages['updated'], $labels->singular_name ),
+		4  => sprintf( $post_messages['updated'], $labels->singular_name, '' ),
 		5  => isset( $_GET['revision'] ) ? // WPCS: okay.
 			sprintf(
 				$post_messages['revision'],
