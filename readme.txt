@@ -2,8 +2,8 @@
 Contributors: morganestes
 Tags: post messages, custom post types, admin
 Requires at least: 3.7.0
-Tested up to: 4.4
-Stable tag: 1.0.1
+Tested up to: 4.5
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ C'mon, you gotta do *some* work yourself! (hint: read the inline docs)
 
 == Changelog ==
 
+= 1.0.2 =
+* Fix warning when an updated post isn't previewable.
+
 = 1.0.1 =
 * Fixes a bug that made the post type singular name appear plural.
 
@@ -47,13 +50,12 @@ C'mon, you gotta do *some* work yourself! (hint: read the inline docs)
 
 == Cow Picture ==
 
-```
- ______________________________
-< Post Updated Messages Rocks! >
- ------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-```
+     ______________________________
+    < Post Updated Messages Rocks! >
+     ------------------------------
+            \   ^__^
+             \  (oo)\_______
+                (__)\       )\/\
+                    ||----w |
+                    ||     ||
+
