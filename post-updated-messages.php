@@ -127,7 +127,7 @@ function pum_single_messages( $messages ) {
 		/* translators: 1: post type label, 2: date and time of the revision */
 		'revision'      => __( '%1$s restored to revision from %2$s.' ),
 		/* translators: %s: post type singular label */
-		'preview'       => __( 'Preview %s.', 'post-updated-messages' ),
+		'preview'       => __( 'Preview %s', 'post-updated-messages' ),
 		'field_updated' => __( 'Custom field updated.', 'post-updated-messages' ),
 		'field_deleted' => __( 'Custom field deleted.', 'post-updated-messages' ),
 	);
